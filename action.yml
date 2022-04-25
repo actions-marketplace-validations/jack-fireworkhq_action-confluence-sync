@@ -32,11 +32,11 @@ runs:
             if ! grep -F "<!-- Space:" $file; then
                 continue
             fi
-            echo -n "-L ${file}" >> temp
+            echo -n "-L $file" >> temp
           done
-          echo "> Sync $file";
           targets = $(cat temp) 
-          mark --config ./config.toml -k $targets || exit 1;
+          echo "> Sync $targets";
+          mark --config ./config.toml -k ${targets} || exit 1;
 
 branding:
   icon: 'check-circle'
