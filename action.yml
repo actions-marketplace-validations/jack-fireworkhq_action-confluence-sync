@@ -34,9 +34,9 @@ runs:
             fi
             echo -n "-L $file " >> ./temp
           done
-          targets = $(cat ./temp) 
-          echo "> Sync $targets";
-          mark --config ./config.toml -k ${targets} || exit 1;
+          cat ./temp
+          echo "> Sync $(cat ./temp)";
+          mark --config ./config.toml -k $(cat ./temp) || exit 1;
 
 branding:
   icon: 'check-circle'
