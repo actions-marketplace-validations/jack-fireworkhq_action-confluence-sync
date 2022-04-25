@@ -1,6 +1,6 @@
-name: hadenlabs-action-confluence-sync'
+name: JackDeng-action-confluence-sync'
 description: 'Action confluence sync that can be used to publish markdown documents to confluence.'
-author: 'hadenlabs'
+author: 'hadenlabs-jackdeng'
 inputs:
   confluence_url:
     description: base url of confluence
@@ -27,14 +27,16 @@ runs:
           echo "username = '${{ inputs.confluence_username }}'" >> ./config.toml
           echo "password = '${{ inputs.confluence_token }}'" >> ./config.toml
           echo "base_url = '${{ inputs.confluence_url }}'" >> ./config.toml
+          $(> temp) 
           for file in ${{ inputs.files }}; do
             if ! grep -F "<!-- Space:" $file; then
                 continue
             fi
-            echo "> Sync $file";
-            mark --config ./config.toml -f ${file} || exit 1;
-            echo;
+            echo -n "-L ${file}" >> temp
           done
+          echo "> Sync $file";
+          targets = $(cat temp) 
+          mark --config ./config.toml -k $targets || exit 1;
 
 branding:
   icon: 'check-circle'
