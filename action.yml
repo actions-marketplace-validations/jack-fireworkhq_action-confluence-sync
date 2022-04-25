@@ -1,4 +1,4 @@
-name: JackDeng-action-confluence-sync'
+name: JackDeng-action-confluence-sync
 description: 'Action confluence sync that can be used to publish markdown documents to confluence.'
 author: 'hadenlabs-jackdeng'
 inputs:
@@ -21,7 +21,7 @@ runs:
     - name: Sync files to confluence.
       uses: addnab/docker-run-action@v3
       with:
-        image: kovetskiy/mark:latest
+        image: jackfirework/markl:latest
         options: -v ${{ github.workspace }}:/github/workspace --workdir /github/workspace
         run: |
           echo "username = '${{ inputs.confluence_username }}'" >> ./config.toml
