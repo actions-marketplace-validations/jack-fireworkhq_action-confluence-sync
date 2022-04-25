@@ -32,9 +32,9 @@ runs:
             if ! grep -F "<!-- Space:" $file; then
                 continue
             fi
-            echo -n "-L $file " >> temp
+            echo -n "-L $file " >> ./temp
           done
-          targets = $(cat temp) 
+          targets = $(cat ./temp) 
           echo "> Sync $targets";
           mark --config ./config.toml -k ${targets} || exit 1;
 
