@@ -27,12 +27,12 @@ runs:
           echo "username = '${{ inputs.confluence_username }}'" >> ./config.toml
           echo "password = '${{ inputs.confluence_token }}'" >> ./config.toml
           echo "base_url = '${{ inputs.confluence_url }}'" >> ./config.toml
-          $(> temp) 
+
           for file in ${{ inputs.files }}; do
             if ! grep -F "<!-- Space:" $file; then
                 continue
             fi
-            echo -n "-L $file" >> temp
+            echo -n "-L $file " >> temp
           done
           targets = $(cat temp) 
           echo "> Sync $targets";
